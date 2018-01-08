@@ -71,4 +71,17 @@ describe ('GET /articles/:article_id/comments', () => {
     })
 })
 
+describe ('POST /articles/:article_id/comments', () => {
+    it('adds comment to an article',()=> {
+        return request(app)
+        .post(`/api/articles/${usefulData.articles[0]._id}/comments`)
+        .send({ 'comment' : 'new comment added' })
+        .expect(200)
+        .then((res) => {
+            expect(res.body.comment).to.be.an('object');
+            expect(res.body.comment.body).to.be.a("string");
+        })
+    })
+})
+
 })
