@@ -84,4 +84,25 @@ describe ('POST /articles/:article_id/comments', () => {
     })
 })
 
+describe('PUT /articles/:article_id', () => {
+    it('returns votes up for a query of UP', () => {
+        return request(app)
+        .put(`/api/articles/${usefulData.articles[0]._id}?votes=up`)
+        .expect(200)
+        .then((res) => {         
+        expect(res.body.articles.title).to.be.a("string")  
+        expect(res.body.articles.votes).to.equal(1);
+        })
+    })
+    it('returns votes up for a query of DOWN', () => {
+        return request(app)
+        .put(`/api/articles/${usefulData.articles[0]._id}?votes=down`)
+        .expect(200)
+        .then((res) => {           
+        expect(res.body.articles.title).to.be.a("string")  
+        expect(res.body.articles.votes).to.equal(-1);
+        })
+    })
+})
+
 })
