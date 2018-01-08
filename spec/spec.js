@@ -45,4 +45,17 @@ describe('GET /topics/:topic_id/articles', () => {
     })
 })
 
+describe('GET /articles', () => {
+    it('returns all articles', () => {
+        return request(app)
+        .get(`/api/topics/${usefulData.topics[0]._id}/articles`)
+        .expect(200)
+        .then((res) => {
+            expect(res.body.articles).to.be.an('array');
+            expect(res.body.articles[0].title).to.be.a("string");
+            expect(res.body.articles[0].body).to.be.a("string");
+        })
+    })
+})
+
 })
