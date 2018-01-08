@@ -21,4 +21,17 @@ const getCommentsByArtId = (req,res,next) => {
         .catch(err => next(err))
 }
 
-module.exports = {getAllArticles, getCommentsByArtId}
+const addComments = (req,res,next) => {
+    let comments = new Comments ({
+        body: req.body.comment,
+        belongs_to: req.params.article_id,
+        created_by: "j-redfern"
+    })
+    comments.save()
+    .then ((comment)=> {
+        res.send({comment})
+    })
+    .catch(err => next(err))
+}
+
+module.exports = {getAllArticles, getCommentsByArtId, addComments}
