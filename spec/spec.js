@@ -48,7 +48,7 @@ describe('GET /topics/:topic_id/articles', () => {
 describe('GET /articles', () => {
     it('returns all articles', () => {
         return request(app)
-        .get(`/api/topics/${usefulData.topics[0]._id}/articles`)
+        .get(`/api/articles`)
         .expect(200)
         .then((res) => {
             expect(res.body.articles).to.be.an('array');
@@ -57,5 +57,7 @@ describe('GET /articles', () => {
         })
     })
 })
+
+
 
 })
