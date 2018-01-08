@@ -34,4 +34,16 @@ const addComments = (req,res,next) => {
     .catch(err => next(err))
 }
 
-module.exports = {getAllArticles, getCommentsByArtId, addComments}
+const editVotes = (req,res,next) => {
+    let num = 0;
+    if(req.query.votes === "up") num = 1
+    if(req.query.votes === "down") num = -1
+    
+    Articles.findByIdAndUpdate(req.params.article_id, {$inc: {votes:num}},{new:true})
+    .then((articles)=> {
+        res.send({articles})
+    })
+    .catch(err => next(err))
+}
+
+module.exports = {getAllArticles, getCommentsByArtId, addComments, editVotes}
