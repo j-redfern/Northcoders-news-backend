@@ -13,4 +13,12 @@ const editVotes = (req,res,next) => {
     .catch(err => next(err))
 }
 
-module.exports = {editVotes};
+const deleteComment = (req, res, next) => {
+    Comments.findByIdAndRemove(req.params.comment_id)
+    .then ((comments) => {
+        res.send({comments: "delete this comment"})
+    })
+    .catch(err => next(err))
+}
+
+module.exports = {editVotes, deleteComment};
