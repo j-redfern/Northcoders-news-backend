@@ -8,11 +8,13 @@ var config = require('./config');
 var db = config.DB[process.env.NODE_ENV] || process.env.DB;
 mongoose.Promise = Promise;
 const apiRouter = require('./routes/api')
+const cors = require('cors');
 
 mongoose.connect(db, {useMongoClient: true})
   .then(() => console.log('successfully connected to', db))
   .catch(err => console.log('connection failed', err));
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api',apiRouter)
