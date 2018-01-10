@@ -1,5 +1,3 @@
-const password = process.env.MONGO_PASS;
-
 module.exports = {
     DB: {
       test: 'mongodb://localhost/northcoders-news-api-test',
@@ -8,7 +6,8 @@ module.exports = {
     },
     PORT: {
       test: 3090,
-      dev: 3000
+      dev: 3000,
+      production: 3000
     }
   };
   
