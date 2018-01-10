@@ -105,4 +105,25 @@ describe('PUT /articles/:article_id', () => {
     })
 })
 
+describe('PUT /comments/:comment_id', () => {
+    it('returns votes up for a query of UP', () => {
+        return request(app)
+        .put(`/api/comments/${usefulData.comments[0]._id}?votes=up`)
+        .expect(200)
+        .then((res) => {      
+        expect(res.body.comments.created_by).to.be.a("string")  
+        expect(res.body.comments.votes).to.equal(1);
+        })
+    })
+    it('returns votes up for a query of DOWN', () => {
+        return request(app)
+        .put(`/api/comments/${usefulData.comments[0]._id}?votes=down`)
+        .expect(200)
+        .then((res) => {           
+        expect(res.body.comments.created_by).to.be.a("string")  
+        expect(res.body.comments.votes).to.equal(-1);
+        })
+    })
+})
+
 })
