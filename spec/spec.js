@@ -142,4 +142,16 @@ describe('DELETE /comments/:comment_id', () => {
     })    
 })
 
+describe('GET /users/:username', () => {
+    it('returns user details for specific user', () => {
+        return request(app)
+        .get(`/api/users/${usefulData.user.username}`)
+        .expect(200)
+        .then((res) => {
+            expect(res.body[0]).to.be.an("object");
+            expect(res.body[0].username).to.be.a("string");
+            expect(res.body[0].name).to.be.a("string");
+        })
+        })
+    })
 })
