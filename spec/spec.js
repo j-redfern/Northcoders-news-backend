@@ -58,6 +58,19 @@ describe('GET /articles', () => {
     })
 })
 
+describe('GET /articles/:article_id', () => {
+    it('returns article by article id', () => {
+        return request(app)
+            .get(`/api/articles/${usefulData.articles[0]._id}`)
+            .expect(200)
+            .then((res) => {
+                expect(res.body.articles).to.be.an('object');
+                expect(res.body.articles._id).to.be.a("string");
+                expect(res.body.articles.title).to.be.a("string");
+            })
+    })
+})
+
 describe ('GET /articles/:article_id/comments', () => {
     it('returns all the comments from the article',()=> {
         return request(app)

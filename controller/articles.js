@@ -8,6 +8,14 @@ const getAllArticles = (req,res,next) => {
     .catch(err => next(err))
 }
 
+const getArticleByArtId = (req,res,next) => {
+    Articles.findById(req.params.article_id)
+        .then ((articles) => {
+            res.send({articles})
+        }) 
+        .catch(err => next(err))
+}
+
 const getCommentsByArtId = (req,res,next) => {
     Articles.findById(req.params.article_id)  
         .then((articles) => {
@@ -46,4 +54,4 @@ const editVotes = (req,res,next) => {
     .catch(err => next(err))
 }
 
-module.exports = {getAllArticles, getCommentsByArtId, addComments, editVotes}
+module.exports = {getAllArticles, getArticleByArtId, getCommentsByArtId, addComments, editVotes}
