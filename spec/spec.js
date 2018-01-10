@@ -126,4 +126,20 @@ describe('PUT /comments/:comment_id', () => {
     })
 })
 
+describe('DELETE /comments/:comment_id', () => {
+    it('deletes a comment',() => {
+        return request(app)
+        .delete(`/api/comments/${usefulData.comments[0]._id}`)
+        .expect(200)
+        .then((res) => {
+            expect(res.body.comments).to.equal('delete this comment');
+            return request (app)
+            .get(`/api/comments/${usefulData.comments[0]._id}`)
+            .then((res) => {
+                expect(res.body.comments).to.equal(undefined);
+            })    
+        })        
+    })    
+})
+
 })
