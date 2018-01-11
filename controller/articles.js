@@ -33,7 +33,7 @@ const addComments = (req,res,next) => {
     let comments = new Comments ({
         body: req.body.comment,
         belongs_to: req.params.article_id,
-        created_by: req.body.comment.username
+        created_by: req.body.username
     })
     comments.save()
     .then ((comment)=> {
