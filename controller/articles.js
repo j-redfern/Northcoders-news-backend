@@ -33,7 +33,7 @@ const addComments = (req,res,next) => {
     let comments = new Comments ({
         body: req.body.comment,
         belongs_to: req.params.article_id,
-        created_by: "j-redfern"
+        created_by: req.body.username
     })
     comments.save()
     .then ((comment)=> {
@@ -51,6 +51,8 @@ const editVotes = (req,res,next) => {
     .then((articles)=> {
         res.send({articles})
     })
+
+
     .catch(err => next(err))
 }
 
