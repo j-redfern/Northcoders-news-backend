@@ -16,7 +16,7 @@ const editVotes = (req,res,next) => {
 const deleteComment = (req, res, next) => {
     Comments.findByIdAndRemove(req.params.comment_id)
     .then ((comments) => {
-        res.send({comments: "delete this comment"})
+        res.send({comments})
     })
     .catch(err => next(err))
 }
